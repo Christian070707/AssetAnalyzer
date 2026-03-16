@@ -28,7 +28,7 @@ fig_price = viz.plot_price_trend()
 fig_hist = viz.plot_returns_distribution()
 
 #Key indicators
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     st.metric("Compound Annual Growth Rate (CAGR)", f"{calc.compound_annual_growth:.2f}%")
 
@@ -40,6 +40,9 @@ with col3:
 
 with col4:
     st.metric("Sharpe Ratio", f"{calc.calculate_sharpe_ratio(risk_free_rate):.2f}")
+
+with col5:
+    st.metric("Max Drawdown", f"{calc.max_drawdown_asset:.2f}%")
 
 #Plotting the graphs
 st.plotly_chart(fig_price)
