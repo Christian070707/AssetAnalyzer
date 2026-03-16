@@ -3,6 +3,12 @@ import pandas as pd
 from DataCalculations import DataCalculations
 import numpy as np
 
+@pytest.fixture
+def sampledata():
+    data = pd.DataFrame({"Adj Close": [100, 105, 104]})
+    return DataCalculations(data)
+
+
 # @pytest.fixture
 # def sample_data():
 #     """Maakt een simpel dataframe voor de tests."""
@@ -29,6 +35,12 @@ def test_sharpe_ratio():
     ann_std = returns.std() * np.sqrt(252)
     expected = (mean_return - risk_free_rate) / ann_std
     assert result == pytest.approx(expected, rel=1e-4)
+
+
+def test_daily_returns(sample_data):
+    returns = sample_data.daily_returns()
+    assert returns.iloc[0] == pytest.approx(0.05)
+    assert returns.iloc[1] == pytest.approx(-0.0096)
 
 
 # def test_daily_returns(sample_data):
