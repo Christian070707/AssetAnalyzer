@@ -33,17 +33,18 @@ from PortfolioVisualisations import DataVisualizer
 
 
 def main():
-    ticker = "TSLA"
+    ticker = ["TSLA", "ASML"]
     loader = DataLoader(ticker, "2020-01-01", "2026-01-01")
     raw_df = loader.clean_price_data()
+    print(raw_df["Close"])
 
-    calc = DataCalculations(raw_df)
-
-    visualizer = DataVisualizer(calc, ticker)
-
-    visualizer.plot_price_trend()
-    print(loader.cleaned_price_data)
-    visualizer.plot_returns_distribution()
+    # calc = DataCalculations(raw_df)
+    #
+    # visualizer = DataVisualizer(calc, ticker)
+    #
+    # visualizer.plot_price_trend()
+    # print(loader.cleaned_price_data)
+    # visualizer.plot_returns_distribution()
 
 
 if __name__ == "__main__":
